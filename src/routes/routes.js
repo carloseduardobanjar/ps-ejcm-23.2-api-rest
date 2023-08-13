@@ -14,6 +14,9 @@ router.delete("/vendor/:id", VendorController.destroy);
 //rotas para o item
 router.post("/item", ItemController.create);
 router.get("/item/:id", ItemController.show);
+router.get("/item", ItemController.index);
+router.put("/item/:id", ItemController.update);
+router.delete("/item/:id", ItemController.destroy);
 
 //rota para relação anunciante-item
 router.put("/vendor/:vendorId/item/:itemId", ItemController.addVendor);
