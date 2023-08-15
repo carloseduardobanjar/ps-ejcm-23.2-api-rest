@@ -1,4 +1,5 @@
 const Vendor = require("../models/Vendor");
+const Item = require("../models/Item");
 
 async function create(req, res){
     try {
@@ -11,7 +12,7 @@ async function create(req, res){
 
 async function index(req, res){
     try{
-        const vendors = await Vendor.findAll();
+        const vendors = await Vendor.findAll({include: [{model: Item}]} );
         return res.status(200).json({message: "Todos os anunciantes listados", vendors: vendors});
     } catch(err) {
         return res.status(500).json({err});
@@ -21,7 +22,7 @@ async function index(req, res){
 async function show(req, res){
     const {id} = req.params;
     try{
-        const vendor = await Vendor.findByPk(id);
+        const vendor = await Vendor.findByPk(id, {include: [{model: Item}]});
         return res.status(200).json({vendor});
     } catch(err){
         return res.status(500).json({err});

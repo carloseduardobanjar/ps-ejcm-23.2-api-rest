@@ -1,7 +1,7 @@
 const Express = require('express');
 const router = Express();
 const VendorController = require("../controllers/VendorController");
-const ItemController = require("../controllers/itemController");
+const ItemController = require("../controllers/ItemController");
 
 
 //rotas para o anunciante
@@ -20,5 +20,6 @@ router.delete("/item/:id", ItemController.destroy);
 
 //rota para relação anunciante-item
 router.put("/vendor/:vendorId/item/:itemId", ItemController.addVendor);
+router.put("/vendor/item/:itemId", ItemController.removeVendor);
 
 module.exports = router;

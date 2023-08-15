@@ -20,6 +20,7 @@ const sequelize = (process.env.DB_CONNECTION === 'sqlite') ?
 module.exports = sequelize;
 
 //require('../models/');
+require('../models/Item');
 require('../models/Vendor');
 
 for (mod in sequelize.models) {

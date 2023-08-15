@@ -1,7 +1,7 @@
 const DataTypes = require("sequelize")
 const sequelize = require("../config/sequelize");
 
-const Vendor = sequelize.define("Vendor",{
+const Vendor = sequelize.define("Vendor", {
     firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -15,7 +15,7 @@ const Vendor = sequelize.define("Vendor",{
         allowNull: false,
     },
     phoneNumber: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     country: {

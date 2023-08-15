@@ -56,14 +56,13 @@ async function destroy(req, res){
     }
 }
 
-
 async function addVendor(req, res){
     const {vendorId, itemId} = req.params; 
     try{
         const vendor = await Vendor.findByPk(vendorId);
         const item = await Item.findByPk(itemId);
         await item.setVendor(vendor);
-        return res.status(200).json(item);
+        return res.status(200).json({item: item, vendor: vendor});
     } catch(error) {
         return res.status(500).json({error});
     }
@@ -74,7 +73,7 @@ async function removeVendor(req, res){
     try{
         const item = await Item.findByPk(itemId);
         await item.setVendor(null);
-        return res.status(200).json(item);
+        return res.status(200).json({item: item});
     } catch(error) {
         return res.status(500).json({error});
     }
