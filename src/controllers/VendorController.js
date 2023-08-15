@@ -12,7 +12,7 @@ async function create(req, res){
 
 async function index(req, res){
     try{
-        const vendors = await Vendor.findAll({include: [{model: Item}]} );
+        const vendors = await Vendor.findAll({include: [{model: Item}]});
         return res.status(200).json({message: "Todos os anunciantes listados", vendors: vendors});
     } catch(err) {
         return res.status(500).json({err});

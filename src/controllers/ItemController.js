@@ -59,7 +59,7 @@ async function destroy(req, res){
 async function addVendor(req, res){
     const {vendorId, itemId} = req.params; 
     try{
-        const vendor = await Vendor.findByPk(vendorId);
+        const vendor = await Vendor.findByPk(vendorId, {include: [{model: Item}]});
         const item = await Item.findByPk(itemId);
         await item.setVendor(vendor);
         return res.status(200).json({item: item, vendor: vendor});
