@@ -2,7 +2,13 @@ const Express = require('express');
 const router = Express();
 const VendorController = require("../controllers/VendorController");
 const ItemController = require("../controllers/ItemController");
+const AuthController = require("../controllers/AuthController");
+const passport = require("passport");
 
+router.use("/private", passport.authenticate('jwt', {session: false}));
+
+router.get('/private/getDetails', AuthController.getDetails);
+router.post('/login', AuthController.login);
 
 //rotas para o anunciante
 router.post("/vendor", VendorController.create);

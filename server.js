@@ -8,6 +8,10 @@ const port = process.env.PORT;
 const routes = require('./src/routes/routes');
 
 
+const passport = require("passport");
+require("./src/middlewares/jwtPassport")(passport);
+app.use(passport.initialize());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
@@ -18,5 +22,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`undefined app listening at http://localhost:${port}`);
+  console.log(`Gakalu app listening at http://localhost:${port}`);
 });

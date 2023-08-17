@@ -22,6 +22,12 @@ const Vendor = sequelize.define("Vendor", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    hash: {
+		type: DataTypes.STRING,
+	},
+	salt: {
+		type: DataTypes.STRING
+	},
 }, {timestamps: true});
 
 Vendor.associate = (models) => {

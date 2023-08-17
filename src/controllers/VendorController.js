@@ -1,9 +1,23 @@
 const Vendor = require("../models/Vendor");
 const Item = require("../models/Item");
+const Auth = require("../config/auth");
 
 async function create(req, res){
     try {
-        const vendor = await Vendor.create(req.body);
+        const { password } = req.body;
+		const hashAndSalt = Auth.generatePassword(password);
+		const salt = hashAndSalt.salt;
+		const hash = hashAndSalt.hash;
+
+        const vendor = await Vendor.create({
+            firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			email: req.body.email,
+			phoneNumber: req.body.phoneNumber,
+            country: req.body.country,
+			hash: hash,
+			salt: salt
+        });
         return res.status(201).json({message: "Anunciante cadastrado com sucesso!", vendor: vendor});
     } catch(err){
         return res.status(500).json({error: err});
